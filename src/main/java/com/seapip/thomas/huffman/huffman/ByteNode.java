@@ -1,7 +1,6 @@
 package com.seapip.thomas.huffman.huffman;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Collection;
 import java.util.Map;
@@ -33,13 +32,13 @@ public class ByteNode implements Node {
     }
 
     @Override
-    public void flatten(Collection<Byte> bytes, BitQueue structure) {
+    public void flatten(Collection<Byte> bytes, Collection<Boolean> structure) {
         structure.add(true);
         bytes.add(b);
     }
 
     @Override
-    public void toMap(Map<Byte, Collection<Boolean>> map, BitQueue bits) {
+    public void toMap(Map<Byte, Collection<Boolean>> map, Collection<Boolean> bits) {
         map.put(b, bits);
     }
 

@@ -44,8 +44,8 @@ public class TreeNode implements Node {
         this.rightNode = rightNode;
     }
 
-    public TreeNode(Queue<Byte> bytes, BitQueue structure) {
-        TreeNode tree = (TreeNode) unflatten(bytes, structure);
+    public TreeNode(Queue<Byte> bytes, Collection<Boolean> structure) {
+        TreeNode tree = (TreeNode) unflatten(bytes, new ArrayDeque<>(structure));
         if (tree != null) {
             leftNode = tree.getLeftNode();
             rightNode = tree.getRightNode();
@@ -83,13 +83,13 @@ public class TreeNode implements Node {
     }
 
     @Override
-    public void flatten(Collection<Byte> bytes, BitQueue structure) {
+    public void flatten(Collection<Byte> bytes, Collection<Boolean> structure) {
         structure.add(false);
         if (leftNode != null) leftNode.flatten(bytes, structure);
         if (rightNode != null) rightNode.flatten(bytes, structure);
     }
 
-    private Node unflatten(Queue<Byte> bytes, BitQueue structure) {
+    private Node unflatten(Queue<Byte> bytes, Queue<Boolean> structure) {
         if (bytes.isEmpty()) return null;
         return structure.poll() ? new ByteNode(bytes.poll()) : new TreeNode(unflatten(bytes, structure), unflatten(bytes, structure));
     }
@@ -129,9 +129,15 @@ public class TreeNode implements Node {
     }
 
     @Override
-    public void toMap(Map<Byte, Collection<Boolean>> map, BitQueue bits) {
-        if (leftNode != null) leftNode.toMap(map, bits.copyAndAdd(false));
-        if (rightNode != null) rightNode.toMap(map, bits.copyAndAdd(true));
+    public void toMap(Map<Byte, Collection<Boolean>> map, Collection<Boolean> bits) {
+        if (leftNode != null) leftNode.toMap(map, copyAndAdd(bits, false));
+        if (rightNode != null) rightNode.toMap(map, copyAndAdd(bits, true));
+    }
+
+    private Collection<Boolean> copyAndAdd(Collection<Boolean> bits, boolean bit) {
+        Collection<Boolean> collection = new ArrayDeque<>(bits);
+        collection.add(bit);
+        return collection;
     }
 
     @Override

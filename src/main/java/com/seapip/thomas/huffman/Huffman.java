@@ -7,6 +7,7 @@ import com.seapip.thomas.huffman.huffman.TreeNode;
 
 import java.io.*;
 import java.nio.ByteBuffer;
+import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -58,7 +59,7 @@ public final class Huffman {
 
             //Convert Huffman tree to map
             Map<Byte, Collection<Boolean>> map = new HashMap<>();
-            tree.toMap(map, new BitQueue());
+            tree.toMap(map, new ArrayDeque<>());
 
             //Encode bytes using map
             BitQueue bits = new BitQueue(1000000);

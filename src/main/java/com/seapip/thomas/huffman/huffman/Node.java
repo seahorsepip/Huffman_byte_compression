@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Queue;
 
 /**
  * The {@code Node} interface is implemented by both the {@code TreeNode} and the {@code ByteNode}.
@@ -16,9 +17,9 @@ import java.util.Map;
 public interface Node {
     int getValue();
 
-    void flatten(Collection<Byte> bytes, BitQueue structure);
+    void flatten(Collection<Byte> bytes, Collection<Boolean> structure);
 
-    void toMap(Map<Byte, Collection<Boolean>> map, BitQueue bits);
+    void toMap(Map<Byte, Collection<Boolean>> map, Collection<Boolean> bits);
 
     void toString(StringBuilder stringBuilder, StringBuilder prefix, boolean isTail);
 
