@@ -9,7 +9,7 @@ import java.util.*;
 
 /**
  * The {@code TreeNode} class consists of a left and right node and has constructor methods
- * to be simply created from a given text. It also has it's own serialization implementation
+ * to be simply created from a given byte array. It also has it's own serialization implementation
  * so it can be stored using less bytes.
  *
  * @author Thomas Gladdines
