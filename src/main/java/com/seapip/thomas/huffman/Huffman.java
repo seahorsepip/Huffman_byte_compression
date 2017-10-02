@@ -75,7 +75,7 @@ public final class Huffman {
             tree.write(outputStream);
 
             //Write compressed data size in bits
-            outputStream.write(ByteBuffer.allocate(8).putLong(bits.size()).array());
+            outputStream.write(ByteBuffer.allocate(4).putInt(bits.size()).array());
 
             //Write compressed data
             outputStream.write(data);
@@ -110,8 +110,8 @@ public final class Huffman {
             byte[] data = new byte[8];
 
             //Read compressed data size in bits
-            dataInputStream.readFully(data, 0, 8);
-            long size = ByteBuffer.wrap(data).getLong();
+            dataInputStream.readFully(data, 0, 4);
+            int size = ByteBuffer.wrap(data).getInt();
 
             //Decode compressed data using Huffman tree
             Node node = tree;
