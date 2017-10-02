@@ -19,7 +19,7 @@ public class HuffmanTest {
 
             Huffman.compress(byteArrayInputStream, byteArrayOutputStream);
             data = byteArrayOutputStream.toByteArray();
-            //assertEquals("Compressed data size should be 42 bytes", 42, data.length);
+            assertEquals("Compressed data size should be 42 bytes", 42, data.length);
         }
 
         try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(data);
