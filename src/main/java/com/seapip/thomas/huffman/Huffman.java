@@ -104,6 +104,9 @@ public final class Huffman {
      */
     public static void decompress(InputStream inputStream, OutputStream outputStream) throws CompressionException {
         try {
+            //Start time
+            long startTime = System.currentTimeMillis();
+
             //Read Huffman tree
             TreeNode tree = TreeNode.read(inputStream);
 
@@ -129,6 +132,9 @@ public final class Huffman {
                     node = ((b & mask) != 0) ? ((TreeNode) node).getRightNode() : ((TreeNode) node).getLeftNode();
                 }
             }
+
+            //Output total time to console
+            System.out.println("Total time: " + (System.currentTimeMillis() - startTime) + "ms"); //NOSONAR
         } catch (IOException e) {
             System.out.println(e.getMessage());
             throw new CompressionException(e.getMessage());
