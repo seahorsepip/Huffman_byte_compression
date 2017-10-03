@@ -36,7 +36,7 @@ public final class Huffman {
             //Start time
             long startTime = System.currentTimeMillis();
 
-            //Read text from input stream
+            //Read bytes from input stream
             byte[] bytes;
             try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
                 int nRead;
