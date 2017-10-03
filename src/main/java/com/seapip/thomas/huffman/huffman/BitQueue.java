@@ -11,8 +11,8 @@ public class BitQueue implements Queue<Boolean> {
         bitSet = new BitSet();
     }
 
-    public BitQueue(int size) {
-        bitSet = new BitSet(size);
+    public BitQueue(int bufferSize) {
+        bitSet = new BitSet(bufferSize);
     }
 
     public BitQueue(Collection<? extends Boolean> c) {
